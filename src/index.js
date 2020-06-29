@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import dbConnect from './database';
+import routes from './routes';
 
 const app = express();
 dbConnect();
@@ -23,6 +24,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(fileupload({ useTempFiles: true }));
+
+app.use('/api/v1', routes);
 
 const PORT = process.env.PORT || 1000;
 
